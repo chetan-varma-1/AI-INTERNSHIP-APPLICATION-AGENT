@@ -15,5 +15,21 @@ class EmbeddingService(ABC):
     def embed_query(self, text: str) -> list[float]:
         """Embed a singl search query.""" 
 
+class OllamaEmbeddingService(EmbeddingService):
+    """Embeds text via Ollama using mxbai-embed-large ( or configured model)"""
+    def __init__(self, config: RAGConfig | None = None) -> None:
+        cfg = config or RAGConfig()
+        self._model = OllamaEmbeddings(
+            model=cfg.embedding_model,
+            base_url=cfg.ollama_base_url,
+        )
+    
+    def embed_documents(self, texts: list[str]) -> list[list[float]]:
+        if not texts:
+            return []
+        return self._model.embed_documents(texts)
+    
+    def embed_query(self, text: str) -> list[float]:
+        return self._model.embed_query(text)
 
 
