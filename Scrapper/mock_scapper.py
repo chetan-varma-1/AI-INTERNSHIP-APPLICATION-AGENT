@@ -5,7 +5,7 @@ from typing import List
 class MockScraper:
     """Provides mock internship listings for development and RAG ingestion"""
 
-    def scaper(self) -> List[dict]:
+    def scraper(self) -> List[dict]:
         """Return all mock  internship job records."""
         return self._get_mock_jobs()
     
