@@ -1,0 +1,6 @@
+# Chroma server configuration mounted at /config.yaml in the container.
+# CORS must be enabled for browser-based clients such as the
+# "Chroma DB" VS Code extension, which cannot read responses without it.
+
+persist_path: "/data"
+cors_allow_origins: ["*"]
